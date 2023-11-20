@@ -1,6 +1,6 @@
 Timer t;
 
-Player p;
+player p;
 
 
 PVector PlayerLocation;
@@ -16,7 +16,9 @@ int score;
 void setup()
 {
   t = new Timer(1);
-  p = new Player();
+  p = new player();
+  size ( 1080, 750);
+  
 }
 
 void draw()
@@ -26,7 +28,9 @@ void draw()
     //death screen
   } else
   {
-    for ( int i = 1; i < enemyList.length; i++)
+    
+    background (255); //paint background white inventory skill 5
+   /* for ( int i = 1; i < enemyList.length; i++)
     {
 
       //calls function model to draw enemy
@@ -45,6 +49,7 @@ void draw()
         //delete enemy object
        
       }
+      
       //create timer to shoot
       /*if (t.time < 0)
        {
@@ -54,8 +59,8 @@ void draw()
        // spawn bullet near enemy to shoot the player
        PVector direction = new PVector(PlayerLocation.x, PlayerLocation.y).sub(enemyList[i].location.x, enemyList[i].location.y);
        EBulletList.add(new EBullets(enemyList[i].location, direction.normalize()));
-       }*/
-    }
+       }
+    } */
   }
 }
 

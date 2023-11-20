@@ -1,10 +1,10 @@
-class Player
+class player
 {
   boolean up, down, left, right;
   PVector location, velocity;
 
   float speed = 5;
-  Player()
+  player()
   {
     location = new PVector( width/2, height/2);
     velocity = new PVector(25, 25);
