@@ -18,7 +18,18 @@ void setup()
   t = new Timer(1);
   p = new player();
   size ( 1080, 750);
-  
+}
+
+boolean Checkstart() //skill inventory 21 declaring function that returns
+{
+  if (key == 'b' || key == 'B') // skill inventory 13 and 14
+  {
+    //println("yay");
+    return true;
+  } else
+  {
+    return false;
+  }
 }
 
 void draw()
@@ -28,39 +39,39 @@ void draw()
     //death screen
   } else
   {
-    
+
     background (255); //paint background white inventory skill 5
-   /* for ( int i = 1; i < enemyList.length; i++)
-    {
-
-      //calls function model to draw enemy
-      
-      enemyList[i].attack( PlayerLocation);
-
-      t.time = 2;
-      t.countDown();
-      if (enemyList[i].health <= 0)
-      {
-        //if ded destroy enemy object
-        score= score + 1 ;
-        //recover 1 health
-        lives = lives + 1;
-
-        //delete enemy object
-       
-      }
-      
-      //create timer to shoot
-      /*if (t.time < 0)
-       {
-       //after 2 seconds restart the timer
-       t.time =2;
-       //run trought array, get location of enemies, subtract the location vector with the player location vector to get diretcion
-       // spawn bullet near enemy to shoot the player
-       PVector direction = new PVector(PlayerLocation.x, PlayerLocation.y).sub(enemyList[i].location.x, enemyList[i].location.y);
-       EBulletList.add(new EBullets(enemyList[i].location, direction.normalize()));
-       }
-    } */
+    /* for ( int i = 1; i < enemyList.length; i++)
+     {
+     
+     //calls function model to draw enemy
+     
+     enemyList[i].attack( PlayerLocation);
+     
+     t.time = 2;
+     t.countDown();
+     if (enemyList[i].health <= 0)
+     {
+     //if ded destroy enemy object
+     score= score + 1 ;
+     //recover 1 health
+     lives = lives + 1;
+     
+     //delete enemy object
+     
+     }
+     
+     //create timer to shoot
+    /*if (t.time < 0)
+     {
+     //after 2 seconds restart the timer
+     t.time =2;
+     //run trought array, get location of enemies, subtract the location vector with the player location vector to get diretcion
+     // spawn bullet near enemy to shoot the player
+     PVector direction = new PVector(PlayerLocation.x, PlayerLocation.y).sub(enemyList[i].location.x, enemyList[i].location.y);
+     EBulletList.add(new EBullets(enemyList[i].location, direction.normalize()));
+     }
+     } */
   }
 }
 
@@ -74,11 +85,11 @@ void healthSystem()
   }
 }
 
-
+  //Makes player walk
 void keyPressed()
 {
-  //Makes player walk
 
+  Checkstart(); // skill inventory 21, calling function
   //IS FROM OLD CONTROLLER
 
   if (key == 'd' || (key == 'D'))
@@ -87,7 +98,7 @@ void keyPressed()
   }
   if (key == 'w' || (key == 'W'))
   {
-    
+
     p.up = true;
   }
   if (key == 's' || (key == 'S'))
@@ -99,7 +110,6 @@ void keyPressed()
     p.left = true;
   }
   //check for shooting
-  
 }
 
 void keyReleased()
