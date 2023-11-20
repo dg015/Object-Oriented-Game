@@ -52,5 +52,11 @@ class Player
   }
   
   //draws player model
-
+  void model()
+  {
+    
+    rectMode(CENTER);// skill invetory 3
+    rect(location.x, location.y, 48, 48);//skill inventory 1
+    rectMode(CORNER);
+  }
 }
