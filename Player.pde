@@ -2,6 +2,8 @@ class player
 {
   boolean up, down, left, right;
   PVector location, velocity;
+  
+  float gravity = 9.1f; //skill invetory 10: global variable created
 
   float speed = 5;
   player()
@@ -13,12 +15,10 @@ class player
   void colision()
   {
 
-
     if (location.y<145)
     {
       location.y = 145;
     }
-
 
     if (location.x< 0)
     {
@@ -29,6 +29,16 @@ class player
       location.x = 1000;
     }
   }
+
+  
+  void applyGravity() //skill inventory 20 used, new function created with no paramenters and no return type
+  {
+    //pulls player downwards at all times
+    velocity.y += gravity; // skill inventory 8 used: += used
+    location.add(velocity); // skill inventory 39 used: calculating gravity velocity 
+  }
+
+
 
   void move()
   {
@@ -50,11 +60,11 @@ class player
     }
     location.add(velocity);
   }
-  
+
   //draws player model
   void model()
   {
-    
+
     rectMode(CENTER);// skill invetory 3
     rect(location.x, location.y, 48, 48);//skill inventory 1
     rectMode(CORNER);
