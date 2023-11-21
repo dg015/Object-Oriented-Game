@@ -3,6 +3,8 @@ Timer t;
 player p;
 
 ArrayList<Bullets> bulletList = new ArrayList<Bullets>();// skill inventory 24: intialize array
+ArrayList<Smoke> smokeList = new ArrayList<Smoke>();
+
 
 PVector PlayerLocation;
 PVector EnemyLocation;
@@ -17,7 +19,7 @@ PVector direction;
 void setup()
 {
   t = new Timer(1);
-  p = new player(); 
+  p = new player();
   size ( 1080, 750);
 }
 
@@ -40,7 +42,7 @@ void draw()
     //death screen
   } else
   {
-  
+
     background (255); //paint background white inventory skill 5
     scenario();
     p.model();
@@ -78,13 +80,24 @@ void draw()
      EBulletList.add(new EBullets(enemyList[i].location, direction.normalize()));
      }
      } */
+
+    for ( int i = smokeList.size() -1; i>= 0; i--)
+    {
+      Smoke s = smokeList.get(i);
+      s.model();
+      s.move();
+      if (s.colision() == true)
+      {
+        smokeList.remove(s);
+      }
+    }
   }
 }
 
 void scenario()
 {
   //draws scenario
-  fill(0); // skill inventory 2 
+  fill(0); // skill inventory 2: used to draw scenario
   rect(0, 700, 1090, 45);
   rect (50, 550, 150, 45);
   rect (750, 550, 150, 45);
@@ -99,6 +112,12 @@ void healthSystem()
     // if died print ded and end game
     dead = true;
   }
+}
+
+void mousePressed() // skill inventory 
+{
+
+  smokeList.add(new Smoke(p.location));
 }
 
 void shooting()
@@ -173,6 +192,7 @@ void keyPressed()
   //check for shooting
   shooting();
 }
+
 
 void keyReleased()
 {
