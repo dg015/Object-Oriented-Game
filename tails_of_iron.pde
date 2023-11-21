@@ -42,6 +42,7 @@ void draw()
   {
   
     background (255); //paint background white inventory skill 5
+    scenario();
     p.model();
     p.colision();
     p.move();
@@ -80,6 +81,16 @@ void draw()
   }
 }
 
+void scenario()
+{
+  //draws scenario
+  fill(0); // skill inventory 2 
+  rect(0, 700, 1090, 45);
+  rect (50, 550, 150, 45);
+  rect (750, 550, 150, 45);
+}
+
+
 void healthSystem()
 {
   //check if players has died
@@ -93,7 +104,7 @@ void healthSystem()
 void shooting()
 {
 
-  switch (keyCode) {
+  switch (keyCode) { //skill inventory 15
   case RIGHT:
     direction = new PVector(1, 0); //skill inventory 38: using PVector class
     //skill inventory 34: populating array

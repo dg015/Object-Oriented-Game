@@ -16,6 +16,25 @@ class player
   void colision()
   {
 
+    if ( location.x + 48 > 50
+      && location.x < 50 + 150
+      && location.y + 48 > 550
+      && location.y < 550 + 45)
+    {
+      //player is on the ground so they can jump
+      isGrounded = true;
+      location.y= 500;
+    }
+
+    if ( location.x + 48 > 750
+      && location.x < 750 + 150
+      && location.y + 48 > 550
+      && location.y < 550 + 45)
+    {
+      //player is on the ground so they can jump
+      isGrounded = true;
+      location.y= 500;
+    }
     if (location.y<145)
     {
       location.y = 145;
