@@ -4,7 +4,7 @@ class Bullets
 {
   PVector location, velocity;
   int direction;
-  Bullets(PVector direction)
+  Bullets(float X, float Y, PVector direction)// skill inventory 30: constructor with parametrs
   {
 
 

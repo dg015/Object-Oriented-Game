@@ -1,8 +1,9 @@
 class player
 {
-  boolean up, down, left, right;
+  boolean up, down, left, right, isGrounded;
   PVector location, velocity;
-  
+
+
   float gravity = 9.1f; //skill invetory 10: global variable created
 
   float speed = 5;
@@ -19,6 +20,12 @@ class player
     {
       location.y = 145;
     }
+    if (location.y>630)
+    {
+      //player is on the ground so they can jump
+      location.y = 630;
+      isGrounded = true;
+    }
 
     if (location.x< 0)
     {
@@ -30,12 +37,12 @@ class player
     }
   }
 
-  
+
   void applyGravity() //skill inventory 20 used, new function created with no paramenters and no return type
   {
     //pulls player downwards at all times
     velocity.y += gravity; // skill inventory 8 used: += used
-    location.add(velocity); // skill inventory 39 used: calculating gravity velocity 
+    location.add(velocity); // skill inventory 39 used: calculating gravity velocity
   }
 
 
@@ -45,7 +52,14 @@ class player
 
     velocity = new PVector(0, 0);
     // println(location);
-
+    if (up && isGrounded)
+    {
+      //makes player jump
+      // make variable that check is player is on ground false
+      isGrounded = false;
+      // teleport him some pixels up ahead to give ilusion jumping
+      location.y = location.y - 200;
+    }
     if (down)
     {
       velocity.y += speed;

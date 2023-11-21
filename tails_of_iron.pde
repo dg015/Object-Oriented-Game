@@ -2,6 +2,7 @@ Timer t;
 
 player p;
 
+ArrayList<Bullets> bulletList = new ArrayList<Bullets>();// skill inventory 24: intialize array
 
 PVector PlayerLocation;
 PVector EnemyLocation;
@@ -9,14 +10,14 @@ boolean dead;
 int enemyHealth;
 int lives = 12;
 int score;
-
+PVector direction;
 
 
 
 void setup()
 {
   t = new Timer(1);
-  p = new player();
+  p = new player(); 
   size ( 1080, 750);
 }
 
@@ -39,8 +40,12 @@ void draw()
     //death screen
   } else
   {
-
+  
     background (255); //paint background white inventory skill 5
+    p.model();
+    p.colision();
+    p.move();
+    p.applyGravity();
     /* for ( int i = 1; i < enemyList.length; i++)
      {
      
@@ -85,7 +90,52 @@ void healthSystem()
   }
 }
 
-  //Makes player walk
+void shooting()
+{
+
+  switch (keyCode) {
+  case RIGHT:
+    direction = new PVector(1, 0); //skill inventory 38: using PVector class
+    //skill inventory 34: populating array
+    bulletList.add(new Bullets(PlayerLocation.x, PlayerLocation.y, direction));
+    break; //skill inventory 18 break used
+  case UP:
+    direction = new PVector(0, -1);
+    //skill inventory 34: populating array
+    bulletList.add(new Bullets(PlayerLocation.x, PlayerLocation.y, direction));
+    break;
+  case LEFT:
+    direction = new PVector(-1, 0);
+    //skill inventory 34: populating array
+    bulletList.add(new Bullets(PlayerLocation.x, PlayerLocation.y, direction));
+    break;
+  }
+  /*
+  //depending what arrow key you press that`s the direction you will shoot
+   if (keyCode== RIGHT)
+   {
+   //SHOOTING
+   direction = new PVector(1, 0); //skill inventory 38: using PVector class
+   //skill inventory 34: populating array
+   bulletList.add(new Bullets(PlayerLocation.x, PlayerLocation.y, direction));
+   }
+   if (keyCode == UP)
+   {
+   direction = new PVector(0, -1);
+   bulletList.add(new Bullets(PlayerLocation.x, PlayerLocation.y, direction));
+   }
+   if (keyCode == DOWN )
+   {
+   //work on this later
+   }
+   if (keyCode == LEFT)
+   {
+   direction = new PVector(-1, 0);
+   bulletList.add(new Bullets(PlayerLocation.x, PlayerLocation.y, direction));
+   }*/
+}
+
+//Makes player walk
 void keyPressed()
 {
 
@@ -96,9 +146,9 @@ void keyPressed()
   {
     p.right = true;
   }
-  if (key == 'w' || (key == 'W'))
+  if (key == 'w' || (key == 'W') && p.isGrounded)
   {
-
+    p.isGrounded = false;
     p.up = true;
   }
   if (key == 's' || (key == 'S'))
@@ -110,6 +160,7 @@ void keyPressed()
     p.left = true;
   }
   //check for shooting
+  shooting();
 }
 
 void keyReleased()
