@@ -114,7 +114,7 @@ void healthSystem()
   }
 }
 
-void mousePressed() // skill inventory 
+void mousePressed() // skill inventory 7
 {
 
   smokeList.add(new Smoke(p.location));
