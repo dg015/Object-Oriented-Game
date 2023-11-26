@@ -1,0 +1,6 @@
+Answers to questions
+Number 19: A for loop can will happen for the unitl the variable that was created in the loop reaches teh condition, a while loop will go on until the condition is no longer met
+Number 22: A parameter is a variable that receives a value in a function, argument is the value that is given trough a function
+Number 25: A class is the junction of various objects, a object the values, functions and variables stored in a class.
+Number 26: An constructor is a function that initializes the object when the class is called in the main program, its purpose is to create the instance of a class .
+NUMBER 27: Each class has it's own tab as the code create in here can be used in other codes, making it interchangeable and easier to navigate.
