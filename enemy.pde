@@ -3,9 +3,14 @@ class Enemy
   int health = 3;
   PVector location;
   boolean attacking;
+  Float placeX, placeY;
 
   Enemy()
   {
+    // generate in random locaion
+    placeX =  constrain(random( 0, 1080), 5, 1000); // skill inventory 6
+    placeY =  constrain(random( 0, 750), 15, 250); // skill inventory 6\
+    location = new PVector(placeX, placeY);
   }
   void attack(PVector Ploc)
   {
