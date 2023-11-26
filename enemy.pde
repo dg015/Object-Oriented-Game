@@ -4,7 +4,6 @@ class Enemy
   PVector location;
   boolean attacking;
   Float placeX, placeY;
-
   Enemy()
   {
     // generate in random locaion
@@ -12,16 +11,13 @@ class Enemy
     placeY =  constrain(random( 0, 750), 15, 250); // skill inventory 6\
     location = new PVector(placeX, placeY);
   }
-  void attack(PVector Ploc)
+
+  void model()
   {
-    if (Ploc.x > location.x  && Ploc.x  <location.x +48 && Ploc.y > location.y && Ploc.y < location.y + 48)
-    {
-      attacking = true;
-    } else
-    {
-      attacking = false;
-    }
+    //println(placeX, placeY);
+    ellipse(location.x, location.y, 20, 40);
   }
+  
   void teleport(PVector Plocation) //skill inventory 24
   {
     float dist; //skill inventory 9

@@ -1,10 +1,10 @@
 Timer t;
-
+Follower f;
 player p;
 
 ArrayList<Bullets> bulletList = new ArrayList<Bullets>();// skill inventory 24: intialize array
 ArrayList<Smoke> smokeList = new ArrayList<Smoke>();
-
+ArrayList<EBullets> EBulletList = new ArrayList<EBullets>();
 
 PVector PlayerLocation;
 PVector EnemyLocation;
@@ -14,13 +14,67 @@ int lives = 12;
 int score;
 PVector direction;
 
+int cont = 0;
 
+int health = 25;
+
+Enemy[] enemyList = new Enemy[5]; // skill inventory 33 initialize array
 
 void setup()
 {
   t = new Timer(1);
   p = new player();
+  PlayerLocation = p.location;
   size ( 1080, 750);
+  f = new Follower(PlayerLocation);// skill inventory 29 used
+  for (int i =0; i< enemyList.length; i++)
+  {
+
+    enemyList[i] = new Enemy();
+    enemyList[i].model();
+  }
+}
+
+void enemyFunctions()
+{
+
+  while ( cont< enemyList.length -1 ) // skill inventory 16 while loop
+  {
+    cont++;
+    enemyList[cont] = new Enemy(); // skill inventory 33 populate array
+  }
+
+
+  for (int i = 0; i< enemyList.length; i++)
+  {
+
+
+     enemyList[i].model();
+     enemyList[i].teleport(PlayerLocation);
+    //println(enemyList[i].location);
+
+    for (int j = 0; j<EBulletList.size(); j ++)// skill inventory 17 nested loop
+    {
+
+      EBullets eb = EBulletList.get(j);
+      //draws bullets
+      eb.model();
+      //makes bullet travel
+      eb.travel();
+      //deal damage to player()
+      eb.damage(p.location, health);
+      //check colision
+      eb.ready(2);
+
+
+      if (eb.colision(p.location) == true)
+      {
+
+        EBulletList.remove(eb);
+      }
+    }
+  }
+  // runts trough array and calls all fucnctions for the enemy
 }
 
 boolean Checkstart() //skill inventory 21 declaring function that returns
@@ -44,6 +98,7 @@ void draw()
   {
 
     background (255); //paint background white inventory skill 5
+    enemyFunctions();
     scenario();
     p.model();
     p.colision();
@@ -81,7 +136,7 @@ void draw()
      }
      } */
 
-    for ( int i = smokeList.size() -1; i>= 0; i--) 
+    for ( int i = smokeList.size() -1; i>= 0; i--)
     {
       Smoke s = smokeList.get(i);
       s.model();

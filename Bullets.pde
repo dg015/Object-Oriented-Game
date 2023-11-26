@@ -12,6 +12,12 @@ class Bullets
   }
 
 
+  void model()
+  {
+    //draws model
+    rect(location.x, location.y, 15, 7);
+  }
+
   void travel()
   {
 
