@@ -2,6 +2,9 @@ Timer t;
 Follower f;
 player p;
 
+
+PVector flagP;
+
 ArrayList<Bullets> bulletList = new ArrayList<Bullets>();// skill inventory 24: intialize array
 ArrayList<Smoke> smokeList = new ArrayList<Smoke>();
 ArrayList<EBullets> EBulletList = new ArrayList<EBullets>();
@@ -26,6 +29,9 @@ void setup()
   p = new player();
   PlayerLocation = p.location;
   size ( 1080, 750);
+  
+   flagP = new PVector (random(100, 150), random(240, 450));// set random 2dVector location location to flag to spawn
+   //skill inventory 41
   f = new Follower(PlayerLocation);// skill inventory 29 used
   for (int i =0; i< enemyList.length; i++)
   {
@@ -33,6 +39,12 @@ void setup()
     enemyList[i] = new Enemy();
     enemyList[i].model();
   }
+}
+
+void flag()
+{
+
+  rect( flagP.x, flagP.y, 50, 50);
 }
 
 void enemyFunctions()
@@ -104,6 +116,8 @@ void draw()
     p.colision();
     p.move();
     p.applyGravity();
+    
+    flag();
     /* for ( int i = 1; i < enemyList.length; i++)
      {
      
