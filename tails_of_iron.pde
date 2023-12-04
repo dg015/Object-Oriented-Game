@@ -11,10 +11,13 @@ ArrayList<EBullets> EBulletList = new ArrayList<EBullets>();
 
 PVector PlayerLocation;
 PVector EnemyLocation;
+PVector playerLast;
+
 boolean dead;
 int enemyHealth;
 int lives = 12;
 int score;
+
 PVector direction;
 
 int cont = 0;
@@ -25,13 +28,12 @@ Enemy[] enemyList = new Enemy[5]; // skill inventory 33 initialize array
 
 void setup()
 {
-  t = new Timer(1);
+  size ( 1080, 750);
+  background(255);
+
   p = new player();
   PlayerLocation = p.location;
-  size ( 1080, 750);
-  
-   flagP = new PVector (random(100, 150), random(240, 450));// set random 2dVector location location to flag to spawn
-   //skill inventory 41
+  //skill inventory 41
   f = new Follower(PlayerLocation);// skill inventory 29 used
   for (int i =0; i< enemyList.length; i++)
   {
@@ -39,6 +41,11 @@ void setup()
     enemyList[i] = new Enemy();
     enemyList[i].model();
   }
+
+  t = new Timer(1);
+  flagP = new PVector (random(100, 150), random(240, 450));// set random 2dVector location location to flag to spawn
+  playerLast = PlayerLocation;
+  t.time = 2;
 }
 
 void flag()
@@ -50,10 +57,10 @@ void flag()
 void enemyFunctions()
 {
 
-  while ( cont< enemyList.length -1 ) // skill inventory 16 while loop
+  while ( cont< enemyList.length -1 )
   {
     cont++;
-    enemyList[cont] = new Enemy(); // skill inventory 33 populate array
+    enemyList[cont] = new Enemy();
   }
 
 
@@ -61,11 +68,14 @@ void enemyFunctions()
   {
 
 
-     enemyList[i].model();
-     enemyList[i].teleport(PlayerLocation);
+    enemyList[i].model();
+    enemyList[i].teleport(PlayerLocation);
     //println(enemyList[i].location);
+    // old code
+    //if code to populate ebullet array is outside it works
 
-    for (int j = 0; j<EBulletList.size(); j ++)// skill inventory 17 nested loop
+    // end of old code
+    for (int j = 0; j<EBulletList.size(); j ++)
     {
 
       EBullets eb = EBulletList.get(j);
@@ -110,46 +120,46 @@ void draw()
   {
 
     background (255); //paint background white inventory skill 5
-    enemyFunctions();
-    scenario();
-    p.model();
-    p.colision();
-    p.move();
-    p.applyGravity();
-    
-    flag();
-    /* for ( int i = 1; i < enemyList.length; i++)
-     {
-     
-     //calls function model to draw enemy
-     
-     enemyList[i].attack( PlayerLocation);
-     
-     t.time = 2;
-     t.countDown();
-     if (enemyList[i].health <= 0)
-     {
-     //if ded destroy enemy object
-     score= score + 1 ;
-     //recover 1 health
-     lives = lives + 1;
-     
-     //delete enemy object
-     
-     }
-     
-     //create timer to shoot
-    /*if (t.time < 0)
-     {
-     //after 2 seconds restart the timer
-     t.time =2;
-     //run trought array, get location of enemies, subtract the location vector with the player location vector to get diretcion
-     // spawn bullet near enemy to shoot the player
-     PVector direction = new PVector(PlayerLocation.x, PlayerLocation.y).sub(enemyList[i].location.x, enemyList[i].location.y);
-     EBulletList.add(new EBullets(enemyList[i].location, direction.normalize()));
-     }
-     } */
 
+    scenario();
+    p.model();// draw player model
+    p.colision();//player colision
+    p.move();// make player walk
+    p.applyGravity();
+
+    flag();
+    if ( frameCount%90 == 0 )
+    {
+
+      PVector Ploc = PlayerLocation.copy();
+      int enemyNum = int(random(enemyList.length -1));
+      
+      
+      PVector dir = Ploc.sub(enemyList[enemyNum].location.x, enemyList[enemyNum].location.y).copy();
+      // skill inventory find direction and distance between player and enemy 40
+      stroke(255, 0, 0);
+
+      
+      EBulletList.add(new EBullets(enemyList[enemyNum].location.copy(), dir.normalize())); // skill inventory 35
+    }
+    
+    //goes trought function to find all the bullets
+    for (int i = 1; i<bulletList.size(); i ++)
+    {
+      Bullets b = bulletList.get(i);
+      //draws bullets
+      b.model();
+      //makes bullet travel
+      b.travel();
+      //check colision
+
+      if (b.colision() == true)
+      {
+        //fix this ( crashes after shooting)
+        bulletList.remove(b);
+      }
+    }
+    enemyFunctions();
     for ( int i = smokeList.size() -1; i>= 0; i--)
     {
       Smoke s = smokeList.get(i);
