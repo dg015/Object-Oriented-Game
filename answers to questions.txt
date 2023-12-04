@@ -4,3 +4,10 @@ Number 22: A parameter is a variable that receives a value in a function, argume
 Number 25: A class is the junction of various objects, a object the values, functions and variables stored in a class.
 Number 26: An constructor is a function that initializes the object when the class is called in the main program, its purpose is to create the instance of a class .
 NUMBER 27: Each class has it's own tab as the code create in here can be used in other codes, making it interchangeable and easier to navigate.
+Number 31 : arrayLists don't have a limit, normal arrays do.
+Number 32: Sometimes can be useful to run trough the array or arrayList backwards as it can be used to sort the array in different manners, it can be specially useful in a database. It also helps 
+by avoiding the array to go out of bounds 
+Number 37: A single PVector can store two numbers while a float variable can only store one, making it better to have one PVector instead of two floats 
+Number 42: Normalizing a vector maintains its direction but makes it length 1,  this is turn helps by making the no matter the distance between the objects when its calculated 
+to always be one, in other words dividing it by its magnitude, transforming it into a unit vector. It can be useful as to calculate only the direction between to objects
+
