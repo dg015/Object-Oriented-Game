@@ -15,14 +15,14 @@ PVector playerLast;
 
 boolean dead;
 int enemyHealth;
-int lives = 12;
+int lives;
 int score;
 
 PVector direction;
 
 int cont = 0;
 
-int health = 25;
+int health = 2;
 
 Enemy[] enemyList = new Enemy[5]; // skill inventory 33 initialize array
 
@@ -75,25 +75,26 @@ void enemyFunctions()
     //if code to populate ebullet array is outside it works
 
     // end of old code
-    for (int j = 0; j<EBulletList.size(); j ++)
+    //for (int j = 0; j<EBulletList.size(); j ++)
+  }
+
+  for (int j = EBulletList.size() - 1; j > 0; j--)
+  {
+
+    EBullets eb = EBulletList.get(j);
+    //draws bullets
+    eb.model();
+    //makes bullet travel
+    eb.travel();
+    //deal damage to player()
+    health = eb.damage(p.location, health);
+    //check colision
+    eb.ready(2);
+
+
+    if (eb.colision(p.location) == true)
     {
-
-      EBullets eb = EBulletList.get(j);
-      //draws bullets
-      eb.model();
-      //makes bullet travel
-      eb.travel();
-      //deal damage to player()
-      eb.damage(p.location, health);
-      //check colision
-      eb.ready(2);
-
-
-      if (eb.colision(p.location) == true)
-      {
-
-        EBulletList.remove(eb);
-      }
+      EBulletList.remove(j);
     }
   }
   // runts trough array and calls all fucnctions for the enemy
@@ -120,29 +121,29 @@ void draw()
   {
 
     background (255); //paint background white inventory skill 5
-
+    println(health);
     scenario();
     p.model();// draw player model
     p.colision();//player colision
     p.move();// make player walk
     p.applyGravity();
-
+    healthSystem(30);
     flag();
     if ( frameCount%90 == 0 )
     {
 
       PVector Ploc = PlayerLocation.copy();
       int enemyNum = int(random(enemyList.length -1));
-      
-      
+
+
       PVector dir = Ploc.sub(enemyList[enemyNum].location.x, enemyList[enemyNum].location.y).copy();
       // skill inventory find direction and distance between player and enemy 40
       stroke(255, 0, 0);
 
-      
+
       EBulletList.add(new EBullets(enemyList[enemyNum].location.copy(), dir.normalize())); // skill inventory 35
     }
-    
+
     //goes trought function to find all the bullets
     for (int i = 1; i<bulletList.size(); i ++)
     {
@@ -183,8 +184,14 @@ void scenario()
 }
 
 
-void healthSystem()
+void healthSystem(int max)
 {
+
+  if (lives > max)
+  {
+    lives = max;
+  }
+
   //check if players has died
   if ( lives < 0)
   {
@@ -219,29 +226,6 @@ void shooting()
     bulletList.add(new Bullets(PlayerLocation.x, PlayerLocation.y, direction));
     break;
   }
-  /*
-  //depending what arrow key you press that`s the direction you will shoot
-   if (keyCode== RIGHT)
-   {
-   //SHOOTING
-   direction = new PVector(1, 0); //skill inventory 38: using PVector class
-   //skill inventory 34: populating array
-   bulletList.add(new Bullets(PlayerLocation.x, PlayerLocation.y, direction));
-   }
-   if (keyCode == UP)
-   {
-   direction = new PVector(0, -1);
-   bulletList.add(new Bullets(PlayerLocation.x, PlayerLocation.y, direction));
-   }
-   if (keyCode == DOWN )
-   {
-   //work on this later
-   }
-   if (keyCode == LEFT)
-   {
-   direction = new PVector(-1, 0);
-   bulletList.add(new Bullets(PlayerLocation.x, PlayerLocation.y, direction));
-   }*/
 }
 
 //Makes player walk

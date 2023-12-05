@@ -29,14 +29,17 @@ class EBullets
     }
   }
 
-  void damage(PVector player, int health)
+  int damage(PVector player, int health)
   {
 
-    if  (player.x > location.x  && player.x  <location.x +48 && player.y > location.y && player.y < location.y + 24)
+    //if  (player.x >= location.x  && player.x  <=location.x +48 && player.y >= location.y && player.y <= location.y + 24)
+    if (player.dist(location) < 10)
     {
       println("damage player");
       health = health - 1;
     }
+    
+    return health;
   }
   void travel()
   {
@@ -47,7 +50,8 @@ class EBullets
 
   boolean colision(PVector player)
   {
-    if  (player.x > location.x  && player.x  <location.x +48 && player.y > location.y && player.y < location.y + 24)
+    //if  (player.x >= location.x  && player.x  <=location.x +48 && player.y >= location.y && player.y <= location.y + 24)
+    if (player.dist(location) < 10) //skill inventory 6.
     {
       return true;
     }
