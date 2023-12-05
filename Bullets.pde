@@ -7,7 +7,7 @@ class Bullets
   Bullets(float X, float Y, PVector direction)// skill inventory 30: constructor with parametrs
   {
 
-
+    location = new PVector (X, Y);
     this.velocity = direction.copy().mult(25);
   }
 
