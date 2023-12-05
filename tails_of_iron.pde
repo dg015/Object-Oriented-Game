@@ -127,7 +127,7 @@ void draw()
     p.colision();//player colision
     p.move();// make player walk
     p.applyGravity();
-    healthSystem(30);
+    healthSystem(30); //skill inventory 23
     flag();
     if ( frameCount%90 == 0 )
     {
