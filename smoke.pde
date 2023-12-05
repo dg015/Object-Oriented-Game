@@ -15,15 +15,15 @@ class Smoke
   }
   void move()
   {
-
+  // add velocity to smoke so it can go up
     location.add(velocity);
   }
 
   boolean colision()
   {
+    //if out of the screen return true to destroy smoke
     if (location.y >750)
     {
-
       return true;
     }
     else

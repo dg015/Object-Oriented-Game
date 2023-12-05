@@ -21,7 +21,7 @@ class Bullets
 
   void damage(Enemy enemy)
   {
-    //if  (player.x >= location.x  && player.x  <=location.x +48 && player.y >= location.y && player.y <= location.y + 24)
+    // check if player is in damage range and deals damage to player health
     if (enemy.location.dist(location) < 25)
     {
       println("damage enemy");
@@ -32,11 +32,12 @@ class Bullets
 
   void travel()
   {
-
+  // adds velocity to bullets so they can travel the screen
     location.add(velocity);
   }
   boolean colision()
   {
+    // if bullet is out of screen return true to destroy bullet
     if (location.x> 1080)
     {
       return true;

@@ -16,41 +16,27 @@ class EBullets
     this.velocity = direction.copy().mult(15);
   }
 
-  boolean ready(float time )
-  {
-    time -= 1/frameRate;
-    if (time == 0)
-    {
-      return true;
-    } else
-    {
-      time = 2;
-      return false;
-    }
-  }
 
   int damage(PVector player, int health) // skill inventory 23
   {
-
-    //if  (player.x >= location.x  && player.x  <=location.x +48 && player.y >= location.y && player.y <= location.y + 24)
+    // check if player is in damage range and deals damage to player health
     if (player.dist(location) < 10)
     {
-      
       health = health - 1;
     }
-    
+
     return health;
   }
   void travel()
   {
-
+    //add velocity to location so bullet can travel the screen
     location.add(velocity);
   }
 
 
   boolean colision(PVector player)
   {
-    //if  (player.x >= location.x  && player.x  <=location.x +48 && player.y >= location.y && player.y <= location.y + 24)
+    // if bullet is out of screen return true to destroy bullet
     if (player.dist(location) < 10) //skill inventory 6.
     {
       return true;
