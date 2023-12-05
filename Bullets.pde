@@ -18,6 +18,18 @@ class Bullets
     rect(location.x, location.y, 15, 7);
   }
 
+
+  void damage(Enemy enemy)
+  {
+    //if  (player.x >= location.x  && player.x  <=location.x +48 && player.y >= location.y && player.y <= location.y + 24)
+    if (enemy.location.dist(location) < 25)
+    {
+      println("damage enemy");
+      enemy.health = enemy.health - 1;
+    }
+  }
+
+
   void travel()
   {
 

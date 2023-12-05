@@ -4,20 +4,36 @@ class Enemy
   PVector location;
   boolean attacking;
   Float placeX, placeY;
+
   Enemy()
   {
     // generate in random locaion
-    placeX =  random( 0, 1080); // skill inventory 6
-    placeY =  random( 0, 750); // skill inventory 6\
-    location = new PVector(placeX, placeY);
+
+    location = new PVector(random(0, 1080), random(0, 750));
+    health = 3;
   }
 
   void model()
   {
     //println(placeX, placeY);
+    rectMode(CENTER);
     ellipse(location.x, location.y, 20, 40);
+    rectMode(CORNER);
   }
-  
+
+
+  int dead(int points)
+  {
+    if ( health <=0)
+    {
+      location = new PVector(random(0, 1080), random(0, 750));
+      health = 5;
+      return points + 1;
+      
+    }
+    return points;
+  }
+
   void teleport(PVector Plocation) //skill inventory 24
   {
     float dist; //skill inventory 9

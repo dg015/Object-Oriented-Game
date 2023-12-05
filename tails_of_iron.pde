@@ -13,16 +13,16 @@ PVector PlayerLocation;
 PVector EnemyLocation;
 PVector playerLast;
 
-boolean dead;
-int enemyHealth;
-int lives;
+boolean dead = false;
 int score;
 
 PVector direction;
 
 int cont = 0;
 
-int health = 2;
+int health = 5;
+
+boolean started;
 
 Enemy[] enemyList = new Enemy[5]; // skill inventory 33 initialize array
 
@@ -70,12 +70,10 @@ void enemyFunctions()
 
     enemyList[i].model();
     enemyList[i].teleport(PlayerLocation);
+    enemyList[i].dead(score);
     //println(enemyList[i].location);
     // old code
     //if code to populate ebullet array is outside it works
-
-    // end of old code
-    //for (int j = 0; j<EBulletList.size(); j ++)
   }
 
   for (int j = EBulletList.size() - 1; j > 0; j--)
@@ -97,6 +95,8 @@ void enemyFunctions()
       EBulletList.remove(j);
     }
   }
+
+
   // runts trough array and calls all fucnctions for the enemy
 }
 
@@ -114,10 +114,30 @@ boolean Checkstart() //skill inventory 21 declaring function that returns
 
 void draw()
 {
+  if (started == false)
+  {
+    fill(0);
+    rect(0, 0, 1080, 1080);
+    fill(255);
+    textSize(128);
+    text("score", width/2-125, height/2- 100);
+    text(score, width/2-100, height/2);
+    textSize(80);
+    text("Press R to restart", width/2-220, height/2+ 150);
+    fill(0);
+  }
   if ( dead == true)
   {
-    //death screen
-  } else
+    fill(0);
+    rect(0, 0, 1080, 1080);
+    fill(255);
+    textSize(128);
+    text("score", width/2-125, height/2- 100);
+    text(score, width/2-100, height/2);
+    textSize(80);
+    text("Press R to restart", width/2-220, height/2+ 150);
+    fill(0);
+  } else if (started == true)
   {
 
     background (255); //paint background white inventory skill 5
@@ -145,7 +165,7 @@ void draw()
     }
 
     //goes trought function to find all the bullets
-    for (int i = 1; i<bulletList.size(); i ++)
+    for (int i = bulletList.size() - 1; i>0; i-- )
     {
       Bullets b = bulletList.get(i);
       //draws bullets
@@ -154,6 +174,11 @@ void draw()
       b.travel();
       //check colision
 
+      for (int j =0; j< enemyList.length; j++)
+      {
+        b.damage(enemyList[j]);
+        score = enemyList[j].dead(score);
+      }
       if (b.colision() == true)
       {
         //fix this ( crashes after shooting)
@@ -163,7 +188,7 @@ void draw()
     enemyFunctions();
     for ( int i = smokeList.size() -1; i>= 0; i--)
     {
-      Smoke s = smokeList.get(i);
+      Smoke s = smokeList.get(i);// skill inventory 36
       s.model();
       s.move();
       if (s.colision() == true)
@@ -187,16 +212,17 @@ void scenario()
 void healthSystem(int max)
 {
 
-  if (lives > max)
+  //check if players has died
+  if ( health <= 0)
   {
-    lives = max;
+    println("ded");
+    dead = true;
+    started = false;
   }
 
-  //check if players has died
-  if ( lives < 0)
+  if (health > max)
   {
-    // if died print ded and end game
-    dead = true;
+    health = max;
   }
 }
 
@@ -252,6 +278,19 @@ void keyPressed()
   {
     p.left = true;
   }
+  if (( key == 'r') || (key == 'R'))
+  {
+    started = true;
+
+    if ( dead == true)
+    {
+      
+      dead = false;
+      health = 5;
+      score = 0;
+    }
+  }
+
   //check for shooting
   shooting();
 }

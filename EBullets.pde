@@ -13,7 +13,7 @@ class EBullets
     //create bullet velocity
     //initalize bullet vector
     this.location = enemy;
-    this.velocity = direction.copy().mult(5);
+    this.velocity = direction.copy().mult(15);
   }
 
   boolean ready(float time )
@@ -29,13 +29,13 @@ class EBullets
     }
   }
 
-  int damage(PVector player, int health)
+  int damage(PVector player, int health) // skill inventory 23
   {
 
     //if  (player.x >= location.x  && player.x  <=location.x +48 && player.y >= location.y && player.y <= location.y + 24)
     if (player.dist(location) < 10)
     {
-      println("damage player");
+      
       health = health - 1;
     }
     
@@ -82,6 +82,8 @@ class EBullets
   void model()
   {
     //draws model
+    rectMode(CENTER);
     rect(location.x, location.y, 15, 7);
+    rectMode(CORNER);
   }
 }
