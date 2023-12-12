@@ -15,7 +15,7 @@ class Follower
   }
   void model()
   {
-    out = PVector.random2D();
+    out = PVector.random2D();// random 2d vector used 
     image(servitor,location.x + out.x,location.y+ out.y,100,100);
     
     //rect(location.x, location.y, 20, 20);
