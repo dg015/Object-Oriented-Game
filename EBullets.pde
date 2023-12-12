@@ -14,6 +14,7 @@ class EBullets
     //initalize bullet vector
     this.location = enemy;
     this.velocity = direction.copy().mult(15);
+    droneShoot.play();
   }
 
 
@@ -22,6 +23,7 @@ class EBullets
     // check if player is in damage range and deals damage to player health
     if (player.dist(location) < 10)
     {
+      hurt.play();
       health = health - 1;
     }
 

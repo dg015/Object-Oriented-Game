@@ -1,3 +1,5 @@
+import processing.sound.*;
+
 Timer t;
 Follower f;
 player p;
@@ -11,6 +13,10 @@ PImage back;
 PImage deathScreen;
 PImage startScreen;
 
+SoundFile shootSound;
+SoundFile death;
+SoundFile droneShoot;
+SoundFile hurt;
 
 PVector flagP;
 
@@ -23,6 +29,8 @@ PVector EnemyLocation;
 PVector playerLast;
 
 boolean pressed = false;
+
+
 
 
 boolean dead = false;
@@ -49,8 +57,14 @@ void setup()
   back = loadImage("background.png");
   deathScreen = loadImage("Death.png");
   startScreen = loadImage("start.jpg");
-  
-  
+
+
+  //setting up sounds
+  shootSound = new SoundFile(this, "shootSound.mp3");
+  death = new SoundFile(this, "Death.mp3");
+  hurt = new SoundFile(this, "Hurt.mp3");
+  droneShoot = new SoundFile(this, "DroneShooting.mp3");
+
   //set screen size
   size ( 1080, 750);
   //set background color to black
@@ -73,6 +87,13 @@ void setup()
 
   flagP = new PVector (random(100, 150), random(240, 450));// set random 2dVector location location to flag to spawn
   //flagP = PVector.random2D();
+}
+
+
+void UI()
+{
+  
+  
 }
 
 void flag()
@@ -137,7 +158,7 @@ void draw()
   if (pressed == false)
   {
     // if not draw this
-    image(startScreen,0,0);
+    image(startScreen, 0, 0);
     fill(255);
     textSize(80);
     text("Press B to start", width/2-270, height/2+ 150);
@@ -149,7 +170,7 @@ void draw()
     //if so draw this
     fill(0);
     rect(0, 0, 1080, 1080);
-    image(deathScreen,0,0);
+    image(deathScreen, 0, 0);
     fill(255);
     textSize(128);
     text("score", width/2-165, height/2- 100);
@@ -244,6 +265,11 @@ void scenario()
   rect (750, 550, 150, 45);
 }
 
+void deathSound()
+{
+}
+
+
 
 void healthSystem(int max)
 {
@@ -251,6 +277,7 @@ void healthSystem(int max)
   //check if players has died
   if ( health <= 0)
   {
+    death.play();
     println("ded");
     dead = true;
     started = false;
@@ -275,6 +302,7 @@ void shooting()
   switch (keyCode) { //skill inventory 15
     // checks in which direction the player is shooting and shoots a bullet in that direction
   case RIGHT:
+    shootSound.play();
     p.state = 4;
     timer = millis();
     direction = new PVector(1, 0); //skill inventory 38: using PVector class
@@ -282,6 +310,7 @@ void shooting()
     bulletList.add(new Bullets(PlayerLocation.x, PlayerLocation.y, direction));
     break; //skill inventory 18 break used
   case UP:
+    shootSound.play();
     p.state = 4;
     timer = millis();
     direction = new PVector(0, -1);
@@ -289,6 +318,7 @@ void shooting()
     bulletList.add(new Bullets(PlayerLocation.x, PlayerLocation.y, direction));
     break;
   case LEFT:
+    shootSound.play();
     p.state = 4;
     timer = millis();
     direction = new PVector(-1, 0);
