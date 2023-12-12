@@ -17,6 +17,7 @@ SoundFile shootSound;
 SoundFile death;
 SoundFile droneShoot;
 SoundFile hurt;
+SoundFile DroneDestroy;
 
 PVector flagP;
 
@@ -57,14 +58,14 @@ void setup()
   back = loadImage("background.png");
   deathScreen = loadImage("Death.png");
   startScreen = loadImage("start.jpg");
-
+  
 
   //setting up sounds
   shootSound = new SoundFile(this, "shootSound.mp3");
   death = new SoundFile(this, "Death.mp3");
   hurt = new SoundFile(this, "Hurt.mp3");
   droneShoot = new SoundFile(this, "DroneShooting.mp3");
-
+  DroneDestroy = new SoundFile(this, "DroneExplode.mp3");
   //set screen size
   size ( 1080, 750);
   //set background color to black
@@ -269,9 +270,6 @@ void scenario()
   rect (750, 550, 150, 45);
 }
 
-void deathSound()
-{
-}
 
 
 
@@ -363,6 +361,7 @@ void keyPressed()
     started = true;
     if ( dead == true)
     {
+      death.play();
       // sets health to max and score to 0
       dead = false;
       health = 5;

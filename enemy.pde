@@ -27,6 +27,7 @@ class Enemy
     //if enemy is dead
     if ( health <=0)
     {
+      DroneDestroy.play();
       // teleport to random location
       location = new PVector(random(0, 1080), random(0, 650));
       // set health to full
