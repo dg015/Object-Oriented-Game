@@ -8,7 +8,7 @@ class Enemy
   Enemy()
   {
     // generate in random locaion
-    location = new PVector(random(0, 1080), random(0, 750));
+    location = new PVector(random(0, 1080), random(0, 650));
     health = 3;
   }
 
@@ -27,7 +27,7 @@ class Enemy
     if ( health <=0)
     {
       // teleport to random location
-      location = new PVector(random(0, 1080), random(0, 750));
+      location = new PVector(random(0, 1080), random(0, 650));
       // set health to full
       health = 5;
       //add one point
@@ -47,7 +47,7 @@ class Enemy
     {
       // teleport away to random location
       location.x = random( 0, 1000);
-      location.y = random (450, 750);
+      location.y = random (450, 650);
       println("close"); // skill inventory 11
     }
   }

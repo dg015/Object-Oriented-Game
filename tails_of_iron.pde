@@ -59,7 +59,7 @@ void setup()
   }
 
   //set flag cordinates in random location
-  
+
   flagP = new PVector (random(100, 150), random(240, 450));// set random 2dVector location location to flag to spawn
   //flagP = PVector.random2D();
 }
@@ -219,7 +219,7 @@ void draw()
       }
     }
   }
-  
+
   if (millis() - timer < 200)
     p.state = 4;
 }
@@ -322,6 +322,14 @@ void keyPressed()
       dead = false;
       health = 5;
       score = 0;
+      for (int j =0; j< enemyList.length; j++)
+      {
+        //runs trough enemy array
+        //checks if enemy has taken damage
+        enemyList[j].location.y = random(450, 650);
+        enemyList[j].location.x = random(0, 1000);
+        //check if enemy is dead and add score
+      }
     }
   }
 
