@@ -17,6 +17,7 @@ class Enemy
     //println(placeX, placeY);
     rectMode(CENTER);
     ellipse(location.x, location.y, 20, 40);
+    image(enemy, location.x -65, location.y-75, 130, 150);// draws image
     rectMode(CORNER);
   }
 

@@ -6,6 +6,8 @@ PImage servitor;
 PImage player;
 PImage shooting;
 PImage moving1;
+PImage enemy;
+PImage back;
 
 
 PVector flagP;
@@ -40,10 +42,13 @@ void setup()
   player = loadImage("Player.png");
   moving1 = loadImage("moving.png");
   shooting = loadImage("shooting.png");
+  enemy = loadImage("Enemy.png");
+  back = loadImage("background.png");
+ 
   //set screen size
   size ( 1080, 750);
   //set background color to black
-  background(255);
+  background(back);
   // create player object
   p = new player();
   //set PVector to player location
@@ -149,7 +154,7 @@ void draw()
   } else if (pressed == true)
   {
     // if player has started the game
-    background (255); //paint background white inventory skill 5
+    background (back); //paint background white inventory skill 5
     println(health);
     scenario(); // draw scenario
     p.model();// draw player model
