@@ -8,6 +8,8 @@ PImage shooting;
 PImage moving1;
 PImage enemy;
 PImage back;
+PImage deathScreen;
+PImage startScreen;
 
 
 PVector flagP;
@@ -38,13 +40,17 @@ Enemy[] enemyList = new Enemy[5]; // skill inventory 33 initialize array
 
 void setup()
 {
+  //loading images
   servitor = loadImage("Servitor.png");
   player = loadImage("Player.png");
   moving1 = loadImage("moving.png");
   shooting = loadImage("shooting.png");
   enemy = loadImage("Enemy.png");
   back = loadImage("background.png");
- 
+  deathScreen = loadImage("Death.png");
+  startScreen = loadImage("start.jpg");
+  
+  
   //set screen size
   size ( 1080, 750);
   //set background color to black
@@ -131,11 +137,10 @@ void draw()
   if (pressed == false)
   {
     // if not draw this
-    fill(0);
-    rect(0, 0, 1080, 1080);
+    image(startScreen,0,0);
     fill(255);
     textSize(80);
-    text("Press B to start", width/2-220, height/2+ 150);
+    text("Press B to start", width/2-270, height/2+ 150);
     fill(0);
   }
   if ( dead == true)
@@ -144,17 +149,18 @@ void draw()
     //if so draw this
     fill(0);
     rect(0, 0, 1080, 1080);
+    image(deathScreen,0,0);
     fill(255);
     textSize(128);
-    text("score", width/2-125, height/2- 100);
-    text(score, width/2-100, height/2);
+    text("score", width/2-165, height/2- 100);
+    text(score, width/2-50, height/2);
     textSize(80);
     text("Press R to restart", width/2-220, height/2+ 150);
     fill(0);
   } else if (pressed == true)
   {
     // if player has started the game
-    background (back); //paint background white inventory skill 5
+    background (back); //Put image as background image, inventory skill 5
     println(health);
     scenario(); // draw scenario
     p.model();// draw player model
