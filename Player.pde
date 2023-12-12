@@ -2,7 +2,7 @@ class player
 {
   boolean up, down, left, right, isGrounded;
   PVector location, velocity;
-
+  int state;
 
   float gravity = 9.1f; //skill invetory 10: global variable created
 
@@ -73,26 +73,32 @@ class player
     // println(location);
     if (up && isGrounded)
     {
+      state =2;
       //makes player jump
       // make variable that check is player is on ground false
       isGrounded = false;
       // teleport him some pixels up ahead to give ilusion jumping
       location.y = location.y - 200;
-    }
-    if (down)
+    } else if (down)
     {
+      state =2;
       velocity.y += speed;
-    }
-    if (left)
+    } else if (left)
     {
+      state = 3;
       velocity.x -= speed ;
-    }
-    if (right)
+    } else if (right)
     {
+      state =2;
       velocity.x += speed;
+    } else
+    {
+      state =1;
     }
     location.add(velocity);
   }
+
+
 
   //draws player model
   void model()
@@ -100,6 +106,26 @@ class player
 
     rectMode(CENTER);// skill invetory 3
     rect(location.x, location.y, 48, 48);//skill inventory 1
+
     rectMode(CORNER);
+    //depeding of the player state draw different animations
+    if (state == 1)
+    {
+      image(player, location.x-50, location.y -60, 130, 150);
+    } else if (state == 2 )
+    {
+      image(moving1, location.x-50, location.y -60, 130, 150);
+    } else if (state == 3 )
+    {
+      println("ts");
+      pushMatrix();
+      translate(location.x, location.y);
+      scale(-1, 1);
+      image(moving1, -50, -60, 130, 150);
+      popMatrix();
+    } else if (state == 4)
+    {
+      image(shooting, location.x + 80, location.y+80, -130, -150);
+    }
   }
 }

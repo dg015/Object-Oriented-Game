@@ -1,5 +1,6 @@
 class Follower
 {
+  PVector out;
   
   PVector location;
   Follower( PVector Ploc) // skill inventory 30
@@ -14,6 +15,9 @@ class Follower
   }
   void model()
   {
-    rect(location.x, location.y, 20, 20);
+    out = PVector.random2D();
+    image(servitor,location.x + out.x,location.y+ out.y,100,100);
+    
+    //rect(location.x, location.y, 20, 20);
   }
 }

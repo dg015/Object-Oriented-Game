@@ -2,6 +2,11 @@ Timer t;
 Follower f;
 player p;
 
+PImage servitor;
+PImage player;
+PImage shooting;
+PImage moving1;
+
 
 PVector flagP;
 
@@ -31,6 +36,10 @@ Enemy[] enemyList = new Enemy[5]; // skill inventory 33 initialize array
 
 void setup()
 {
+  servitor = loadImage("Servitor.png");
+  player = loadImage("Player.png");
+  moving1 = loadImage("moving.png");
+  shooting = loadImage("shooting.png");
   //set screen size
   size ( 1080, 750);
   //set background color to black
@@ -50,7 +59,9 @@ void setup()
   }
 
   //set flag cordinates in random location
+  
   flagP = new PVector (random(100, 150), random(240, 450));// set random 2dVector location location to flag to spawn
+  //flagP = PVector.random2D();
 }
 
 void flag()
@@ -208,6 +219,9 @@ void draw()
       }
     }
   }
+  
+  if (millis() - timer < 200)
+    p.state = 4;
 }
 
 void scenario()
@@ -243,22 +257,29 @@ void mousePressed() // skill inventory 7
   smokeList.add(new Smoke(p.location));
 }
 
+int timer;
+
 void shooting()
 {
-
   switch (keyCode) { //skill inventory 15
     // checks in which direction the player is shooting and shoots a bullet in that direction
   case RIGHT:
+    p.state = 4;
+    timer = millis();
     direction = new PVector(1, 0); //skill inventory 38: using PVector class
     //skill inventory 34: populating array
     bulletList.add(new Bullets(PlayerLocation.x, PlayerLocation.y, direction));
     break; //skill inventory 18 break used
   case UP:
+    p.state = 4;
+    timer = millis();
     direction = new PVector(0, -1);
     //skill inventory 34: populating array
     bulletList.add(new Bullets(PlayerLocation.x, PlayerLocation.y, direction));
     break;
   case LEFT:
+    p.state = 4;
+    timer = millis();
     direction = new PVector(-1, 0);
     //skill inventory 34: populating array
     bulletList.add(new Bullets(PlayerLocation.x, PlayerLocation.y, direction));
@@ -275,6 +296,7 @@ void keyPressed()
   //makes player walk
   if (key == 'd' || (key == 'D'))
   {
+
     p.right = true;
   }
   if (key == 'w' || (key == 'W') && p.isGrounded)
