@@ -92,8 +92,10 @@ void setup()
 
 void UI()
 {
-  
-  
+  fill(0,0,0,100);
+  textSize(80);
+  text("HP: " + health, 15, 80);
+  text("SCORE: " + score, 200, 80);
 }
 
 void flag()
@@ -182,6 +184,7 @@ void draw()
   {
     // if player has started the game
     background (back); //Put image as background image, inventory skill 5
+
     println(health);
     scenario(); // draw scenario
     p.model();// draw player model
@@ -250,8 +253,9 @@ void draw()
         smokeList.remove(s);
       }
     }
+    UI();
   }
-
+  
   if (millis() - timer < 200)
     p.state = 4;
 }
