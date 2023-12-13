@@ -50,22 +50,22 @@ Enemy[] enemyList = new Enemy[5]; // skill inventory 33 initialize array
 void setup()
 {
   //loading images
-  servitor = loadImage("Servitor.png");
-  player = loadImage("Player.png");
-  moving1 = loadImage("moving.png");
-  shooting = loadImage("shooting.png");
-  enemy = loadImage("Enemy.png");
-  back = loadImage("background.png");
-  deathScreen = loadImage("Death.png");
-  startScreen = loadImage("start.jpg");
-  
+  servitor = loadImage("Servitor.png"); //taken out of https://www.reddit.com/r/Warhammer40k/comments/rp8u3d/a_servoskull_pixel_art_gif_i_made_impressed_by/
+  player = loadImage("Player.png");//take out of https://www.dakkadakka.com/dakkaforum/posts/list/793890.page?userfilterid=115122
+  moving1 = loadImage("moving.png");//take out of https://www.dakkadakka.com/dakkaforum/posts/list/793890.page?userfilterid=115122
+  shooting = loadImage("shooting.png"); //take out of https://www.dakkadakka.com/dakkaforum/posts/list/793890.page?userfilterid=115122
+  enemy = loadImage("Enemy.png"); //taken out of https://www.artstation.com/artwork/rx5qL
+  back = loadImage("background.png"); // taken out of https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/2adda209-260d-4e88-9767-e43eea79ff2b/df3ih2h-bcf852f9-d037-499b-b6bf-161c4958ce9a.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzJhZGRhMjA5LTI2MGQtNGU4OC05NzY3LWU0M2VlYTc5ZmYyYlwvZGYzaWgyaC1iY2Y4NTJmOS1kMDM3LTQ5OWItYjZiZi0xNjFjNDk1OGNlOWEucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.dgSzNM9VGZHOKSMk4YaVflDFzAE6PR9dqWD2e2KVT0E
+  deathScreen = loadImage("Death.png"); // taken out of https://petitspixels.com/blg/wp-content/uploads/2017/11/8-bit-skulls-and-bones-pattern-red-petitspixels.png
+  startScreen = loadImage("start.jpg"); // taken out of https://cdna.artstation.com/p/assets/images/images/033/285/444/large/tom-parke-screen-shot-2020-12-27-at-10-53-34-pm.jpg?1609074582
+
 
   //setting up sounds
-  shootSound = new SoundFile(this, "shootSound.mp3");
-  death = new SoundFile(this, "Death.mp3");
-  hurt = new SoundFile(this, "Hurt.mp3");
-  droneShoot = new SoundFile(this, "DroneShooting.mp3");
-  DroneDestroy = new SoundFile(this, "DroneExplode.mp3");
+  shootSound = new SoundFile(this, "shootSound.mp3"); //taken out of https://www.youtube.com/watch?v=wYLhnIrDrNU
+  death = new SoundFile(this, "Death.mp3");// taken out of https://www.youtube.com/watch?v=wYLhnIrDrNU
+  hurt = new SoundFile(this, "Hurt.mp3");// taken out of https://www.youtube.com/watch?v=wYLhnIrDrNU
+  droneShoot = new SoundFile(this, "DroneShooting.mp3"); //taken out of https://www.youtube.com/watch?v=J4Sa8D8nF6w
+  DroneDestroy = new SoundFile(this, "DroneExplode.mp3"); //taken out of https://www.youtube.com/watch?v=bFcaED35iB4
   //set screen size
   size ( 1080, 750);
   //set background color to black
@@ -93,7 +93,7 @@ void setup()
 
 void UI()
 {
-  fill(0,0,0,100);
+  fill(0, 0, 0, 100);
   textSize(80);
   text("HP: " + health, 15, 80);
   text("SCORE: " + score, 200, 80);
@@ -256,9 +256,10 @@ void draw()
     }
     UI();
   }
-  
+
   if (millis() - timer < 200)
     p.state = 4;
+
 }
 
 void scenario()

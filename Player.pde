@@ -126,6 +126,6 @@ class player
     } else if (state == 4)
     {
       image(shooting, location.x + 80, location.y+80, -130, -150); // draws image
-    }
+    } 
   }
 }
