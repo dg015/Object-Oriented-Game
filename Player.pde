@@ -111,12 +111,15 @@ class player
     //depeding of the player state draw different animations
     if (state == 1)
     {
+      //standin still
       image(player, location.x-50, location.y -60, 130, 150);
     } else if (state == 2 )
     {
+      //walking to the right
       image(moving1, location.x-50, location.y -60, 130, 150);
     } else if (state == 3 )
     {
+      //walking to the left
       println("ts");
       pushMatrix();
       translate(location.x, location.y);
@@ -125,6 +128,7 @@ class player
       popMatrix();
     } else if (state == 4)
     {
+      //shooting
       image(shooting, location.x + 80, location.y+80, -130, -150); // draws image
     } 
   }

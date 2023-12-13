@@ -32,8 +32,6 @@ PVector playerLast;
 boolean pressed = false;
 
 
-
-
 boolean dead = false;
 int score;
 
@@ -91,6 +89,7 @@ void setup()
 
 void UI()
 {
+  //draws UI 
   fill(0, 0, 0, 100);
   textSize(80);
   text("HP: " + health, 15, 80);
@@ -252,7 +251,7 @@ void draw()
         smokeList.remove(s);
       }
     }
-    UI();
+    UI();// draws UI
   }
 
   if (millis() - timer < 200)
