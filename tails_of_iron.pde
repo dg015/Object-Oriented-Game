@@ -74,7 +74,6 @@ void setup()
   p = new player();
   //set PVector to player location
   PlayerLocation = p.location;
-  //skill inventory 41
   //create little follower object
   f = new Follower(PlayerLocation);// skill inventory 29 used
   //spawn enemies
@@ -87,7 +86,6 @@ void setup()
   //set flag cordinates in random location
 
   flagP = new PVector (random(100, 150), random(240, 450));// set random 2dVector location location to flag to spawn
-  //flagP = PVector.random2D();
 }
 
 
@@ -206,7 +204,7 @@ void draw()
 
       PVector dir = Ploc.sub(enemyList[enemyNum].location.x, enemyList[enemyNum].location.y).copy();
       //get location
-      // skill inventory find direction and distance between player and enemy 40
+      // skill inventory 40 find direction and distance between player and enemy
 
       //spawn bullet at enemy location
       EBulletList.add(new EBullets(enemyList[enemyNum].location.copy(), dir.normalize())); // skill inventory 35
@@ -222,7 +220,7 @@ void draw()
       b.travel();
       //check colision
 
-      for (int j =0; j< enemyList.length; j++)
+      for (int j =0; j< enemyList.length; j++)// skill inventory 17
       {
         //runs trough enemy array
         //checks if enemy has taken damage
@@ -239,7 +237,7 @@ void draw()
     //most of enemy functions are here
     enemyFunctions();
     //run trough smoke array
-    for ( int i = smokeList.size() -1; i>= 0; i--)
+    for ( int i = smokeList.size() -1; i>= 0; i--) // skill inventory 16
     {
       //assign smoke object from array to s
       Smoke s = smokeList.get(i);// skill inventory 36
