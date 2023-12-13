@@ -98,7 +98,7 @@ class player
     location.add(velocity);
   }
 
-
+  boolean isFacingLeft;
 
   //draws player model
   void model()
@@ -116,10 +116,12 @@ class player
     } else if (state == 2 )
     {
       //walking to the right
+      isFacingLeft = false;
       image(moving1, location.x-50, location.y -60, 130, 150);
     } else if (state == 3 )
     {
       //walking to the left
+      isFacingLeft = true;
       println("ts");
       pushMatrix();
       translate(location.x, location.y);
@@ -129,7 +131,19 @@ class player
     } else if (state == 4)
     {
       //shooting
+      if (isFacingLeft)
+      {
+        pushMatrix();
+      translate(location.x, location.y);
+      scale(-1, 1);
+      image(shooting, + 80, +80, -130, -150); // draws image
+      popMatrix();
+      }
+      else
       image(shooting, location.x + 80, location.y+80, -130, -150); // draws image
-    } 
+    } else if  (state == 5)
+    {
+      
+    }
   }
 }

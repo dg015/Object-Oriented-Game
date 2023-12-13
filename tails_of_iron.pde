@@ -256,7 +256,8 @@ void draw()
 
   if (millis() - timer < 200)
     p.state = 4;
-
+  //if (millis() - timer < 200)
+  //  p.state = 5;
 }
 
 void scenario()
@@ -302,6 +303,7 @@ void shooting()
   switch (keyCode) { //skill inventory 15
     // checks in which direction the player is shooting and shoots a bullet in that direction
   case RIGHT:
+  p.isFacingLeft = false;
     shootSound.play();
     p.state = 4;
     timer = millis();
@@ -318,6 +320,7 @@ void shooting()
     bulletList.add(new Bullets(PlayerLocation.x, PlayerLocation.y, direction));
     break;
   case LEFT:
+  p.isFacingLeft = true;
     shootSound.play();
     p.state = 4;
     timer = millis();
